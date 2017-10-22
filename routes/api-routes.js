@@ -27,7 +27,8 @@ module.exports = function(app) {
             _id: req.body.id
         }, {
             $set: {
-                saved: false
+                saved: false,
+                note : []
             }
         }).then(function(data) {
             res.json(data);
