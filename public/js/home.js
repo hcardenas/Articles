@@ -40,8 +40,15 @@ $(document).ready(function() {
 
     		}
     	});
+    });
 
-    })
+    $(".add-btn").on("click", function (event) {
+    	
+    	var id = $(this).attr("artId");
+    	console.log(id);
+
+    	
+    });
 
 
 
