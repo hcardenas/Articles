@@ -56,14 +56,9 @@ module.exports = function(app) {
 
 
             });
-            db.Article.find({
-                saved: false
-            }).then(function(data) {
-                res.render("homePage", {
-                    home: true,
-                    article: data
-                });
-            })
+            
+            res.redirect("/");
+            
 
         });
     });
