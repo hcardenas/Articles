@@ -1,13 +1,74 @@
-<div class="parallax-container">
+  {{>homeNavBar}}
+
+  <div class="parallax-container" style="height: 300px">
     <div class="parallax"><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575627.jpg"></div>
   </div>
 
-  <div class="section white">
+  <div class="section white hoverable ">
+    {{#if home}}
+    <div class="row container center-align">
+      <h1>Mongoose Scraper!</h1>
+      <p>Welcome!</p>
+    </div>
+    {{else}}
+    <div class="row container center-align">
+      <h1>Saved Articles</h1>
+      <p>Your Saved Articles</p>
+    </div>
+    {{/if}}
+
+    {{#if article}}
     <div class="row container">
-      <h2 class="header">Parallaxsss</h2>
-      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+      <ul class="collapsible" data-collapsible="accordion">
+        {{#if home}}
+        {{#each article}}
+
+        <li id={{this._id}}>
+          <div class="collapsible-header grey lighten-2"><i class="large material-icons">account_balance_wallet</i> {{this.title}}</div>
+          <div class="collapsible-body">
+            <span>{{this.summary}}</span>
+            <br><br>
+            <a class="btn save-btn waves-effect waves-light" artId={{this._id}}>Save Article</a>
+          </div>
+        </li>
+
+        {{/each}}
+        {{else}}
+        {{#each article}}
+
+        <li id={{this._id}}>
+          <div class="collapsible-header grey lighten-2">
+            <i class="large material-icons">account_balance_wallet</i> {{this.title}} 
+
+          </div>
+          <div class="collapsible-body">
+            <span>{{this.summary}}</span>
+            <br><br>
+            <a class="btn add-btn blue waves-effect waves-light modal-trigger" artId={{this._id}} href="#modal1"><i class="medium material-icons">add</i> Add note</a>
+
+            <a class="btn delete-btn red waves-effect waves-light" artId={{this._id}}><i class="medium material-icons">delete_forever</i> Delete From Saved</a>
+          </div>
+        </li>
+
+        {{/each}}
+        {{/if}}  
+      </ul>
+    </div> 
+    {{/if}}
+
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
   </div>
+
 
   <div class="parallax-container">
     <div class="parallax"><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575627.jpg"></div>
