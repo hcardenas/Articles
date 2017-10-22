@@ -43,13 +43,78 @@ $(document).ready(function() {
     });
 
     $(".add-btn").on("click", function (event) {
-    	
     	var id = $(this).attr("artId");
     	console.log(id);
-
+        $.ajax({
+            type : "GET",
+            url : `/api/article-notes/${id}`,
+            data : {id : id},
+            success : function (data) {
+                console.log(data);
+                modalRows(data.note, id);
+                $("#save-note-btn").attr("artId", id);
+                $("#modal1").modal("open");
+            }
+        });
     	
     });
 
+    $("#save-note-btn").on("click", function (event) {
+        var id = $(this).attr("artId");
+        console.log($("#note").val().trim());
+        $.ajax({
+            type : "PUT",
+            url : `/api/save-notes`,
+            data : {
+                id : $(this).attr("artId"),
+                note : $("#note").val().trim()
+            },
+            success : function (data) {
+                modalRows(data.note, id);     
+                
+            }
+        });
+        
+    });
 
 
 });
+
+
+function modalRows(data, id) {
+    console.log(JSON.stringify(data));
+    var list = $("#modal-content-id");
+    list.empty();
+    var ul = $("<ul>").addClass("collection");
+
+    for (var i in data) {
+        console.log(data[i]);
+        var item = $("<li>").addClass("collection-item avatar").attr("id", i);
+        var icon = $("<i>").addClass("material-icons circle").html("folder");
+        var span = $("<p>").text(data[i]);
+        var deleteIcon = $("<a>", {
+            on : {
+                click : function () {
+                    $.ajax({
+                        method: "PUT",
+                        url: `/api/delete-notes`,
+                        data: {
+                            note : data[i],
+                            id: id
+                        }
+                    }).done(function (data) {
+                        console.log(data.note);
+                        $(`#${i}`).remove();
+                        console.log("success");
+                    });
+                }
+            }
+        }).addClass("secondary-content").append($("<i>").addClass("medium material-icons red-text").html("delete_sweep"));
+
+        item.append(icon).append(span).append(deleteIcon);
+        ul.append(item);
+    }
+    list.append(ul);
+}
+
+

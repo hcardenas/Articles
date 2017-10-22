@@ -44,9 +44,11 @@
           <div class="collapsible-body">
             <span>{{this.summary}}</span>
             <br><br>
-            <a class="btn add-btn waves-effect waves-light modal-trigger blue darken-4" artId={{this._id}} href="#modal1"><i class="medium material-icons">add</i> Add note</a>
+
+            <a class="btn add-btn waves-effect waves-light blue darken-4" artId={{this._id}}><i class="medium material-icons">add</i> Add note</a>
 
             <a class="btn delete-btn red waves-effect waves-light" artId={{this._id}}><i class="medium material-icons">delete_forever</i> Delete From Saved</a>
+            
           </div>
         </li>
 
@@ -58,21 +60,54 @@
 
   </div>
 
-  <!-- Modal Structure -->
+
   <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+    <div id="modal-content-id">
+      <ul class="collection">
+
+       <li class="collection-item avatar">
+        <i class="material-icons circle">folder</i>
+        <span class="title">Title</span>
+        <p>First Line </p>
+        <a href="#!" class="secondary-content"><i class="medium material-icons red-text">delete_sweep</i></a>
+      </li>
+      </ul>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <br>
+    <div class="row">
+      <form class="col m12">
+        <div class="row">
+          <div class="input-field col m6 offset-m3">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea id="note" class="materialize-textarea"></textarea>
+            <label for="note">New Note</label>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 
-
-  <div class="parallax-container">
-    <div class="parallax"><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575627.jpg"></div>
+  <div class="modal-footer">
+    <a class="modal-action waves-effect waves-green btn blue darken-4" id="save-note-btn">Save Note</a>
+    <a class="modal-action modal-close waves-effect waves-green btn orange darken-1" >Close</a>
   </div>
+  
+</div>
+
+
+
+
+<div class="parallax-container">
+  <div class="parallax"><img src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575627.jpg"></div>
+</div>
+
+
+
+
+
+
 {{>footer}}
-  <script src="../../js/home.js"></script>
+<script src="../../js/home.js"></script>
 
