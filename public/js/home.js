@@ -15,7 +15,7 @@ $(document).ready(function() {
     		url : `/api/save-article`,
     		data : {id : id},
     		success : function (data) {
-    			Materialize.toast('Saved', 3000);
+    			Materialize.toast('Saved', 1500, "blue darken-4");
     			$(`#${id}`).remove();
 
     		}
@@ -34,7 +34,7 @@ $(document).ready(function() {
     		url : `/api/unsave-article`,
     		data : {id : id},
     		success : function (data) {
-    			Materialize.toast('Delete From Saved', 1500);
+    			Materialize.toast('Delete From Saved', 1500, "orange darken-1");
     			$(`#${id}`).remove();
     			
 
