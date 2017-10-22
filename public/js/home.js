@@ -82,13 +82,11 @@ $(document).ready(function() {
 
 
 function modalRows(data, id) {
-    console.log(JSON.stringify(data));
     var list = $("#modal-content-id");
     list.empty();
     var ul = $("<ul>").addClass("collection");
 
     for (var i in data) {
-        console.log(data[i]);
         var item = $("<li>").addClass("collection-item avatar").attr("id", i);
         var icon = $("<i>").addClass("material-icons circle").html("folder");
         var span = $("<p>").text(data[i]);
@@ -103,13 +101,13 @@ function modalRows(data, id) {
                             id: id
                         }
                     }).done(function (data) {
-                        console.log(data.note);
                         $(`#${i}`).remove();
-                        console.log("success");
+                        Materialize.toast('Note Deleted', 1500, "orange darken-1");
+                        $("#modal1").modal("close");
                     });
                 }
             }
-        }).addClass("secondary-content").append($("<i>").addClass("medium material-icons red-text").html("delete_sweep"));
+        }).addClass("secondary-content btn").append($("<i>").addClass("medium material-icons red-text").html("delete_sweep"));
 
         item.append(icon).append(span).append(deleteIcon);
         ul.append(item);

@@ -14,10 +14,16 @@ module.exports = function(app) {
         db.Article.find({
             saved: false
         }).then(function(data) {
+           if (data.length <= 0) {
+            res.render("homePage", {
+                home: true
+            });
+           }else {
             res.render("homePage", {
                 home: true,
                 article: data
             });
+            }
         })
 
     });
